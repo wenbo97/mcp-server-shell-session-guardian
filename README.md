@@ -93,13 +93,6 @@ The persistent shell **inherits** the environment variables (including `%PATH%`)
 * **Fix:** Verify that these commands are accessible in your **Administrator** terminal *before* you run the `claude` command.
     * *Note:* If you modify your system PATH, you must restart the terminal window and the Claude session for the changes to take effect in the persistent shell.
 
-### 2. Context Conflicts (`CLAUDE.md`)
-Claude prioritizes instructions found in a project's local `CLAUDE.md` file over global plugin prompts.
-* **Symptom:** The Agent refuses to use the `dotnet_shell` tool or continuously reverts to standard, non-persistent command execution.
-* **Fix:** Check the root of the directory you are working in. If a `CLAUDE.md` exists, it likely contains conflicting instructions.
-    * *Option A:* Temporarily rename it to `CLAUDE.md.bak` to test if that resolves the issue.
-    * *Option B:* Explicitly add the "Alive Shell" usage rules into the `CLAUDE.md` file so the project context aligns with the tool's capabilities.
-
 
 ## Additional
 

@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "dotnet_shell": {
+    "dotnet-shell": {
       "command": "./src/dotnet/builds/Mcp.Server.SessionGuardian.Plugin.exe",
       "args": [],
       "env": {}
