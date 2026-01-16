@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<RootNamespace>Mcp.Server.SessionGuardian.Plugin</RootNamespace>
+		<AssemblyName>Mcp.Server.SessionGuardian.Plugin</AssemblyName>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Agents.AI.Abstractions" />
+		<PackageReference Include="Microsoft.Agents.Core" />
+		<PackageReference Include="Microsoft.Agents.AI" />
+		<PackageReference Include="Microsoft.Agents.AI.OpenAI" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+		<PackageReference Include="ModelContextProtocol" />
+		<PackageReference Include="ModelContextProtocol.Core" />
+		<PackageReference Include="Newtonsoft.Json" />
+		<PackageReference Include="Serilog" />
+		<PackageReference Include="Serilog.Sinks.Console" />
+		<PackageReference Include="Serilog.Sinks.File" />
+		<PackageReference Include="Serilog.Extensions.Logging" />
+		<PackageReference Include="Serilog.Extensions.Hosting" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Mcp.Server.SessionGuardian.Shared\Mcp.Server.SessionGuardian.Shared.csproj" />
+	</ItemGroup>
+</Project>

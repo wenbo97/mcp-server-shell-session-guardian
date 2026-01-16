@@ -1,0 +1,74 @@
+digraph SimplifiedArchitecture {
+    
+    rankdir=LR;
+    splines=ortho;
+    nodesep=0.8;
+    ranksep=1.0;
+    fontname="Arial";
+
+    node [shape=box, style="filled,rounded", fontname="Arial", fontsize=11, height=0.6];
+    edge [fontname="Arial", fontsize=10];
+
+    // ---------------------------------------------------------
+    // 0. Orchestration Layer 
+    // ---------------------------------------------------------
+    subgraph cluster_0 {
+        label = "Orchestration Layer";
+        style=filled; color="#ffe6f2"; margin=15;
+        node [fillcolor="white"];
+        
+        Claude [label="AI Agent", shape=box];
+    }
+
+    // ---------------------------------------------------------
+    // 1. MCP Tool Process 
+    // ---------------------------------------------------------
+    subgraph cluster_1 {
+        label = "Process 1: MCP Tool (Transient)";
+        style=filled; color="#e6f2ff"; margin=15;
+        node [fillcolor="white"];
+        
+
+        MCP_Server [label="MCP Server\n(Mcp.Server.SessionGuardian.Plugin.exe)", shape=cylinder];
+    }
+
+    // ---------------------------------------------------------
+    // 2. Host Server Process
+    // ---------------------------------------------------------
+    subgraph cluster_2 {
+        label = "Process 2: Host Server (Persistent)";
+        style=filled; color="#e6ffe6"; margin=15;
+        node [fillcolor="white"];
+        
+
+        Pipe_Host [label="Pipe Server Host\n(Mcp.Server.SessionGuardian.Daemon.exe)", shape=cylinder];
+    }
+
+    // ---------------------------------------------------------
+    // 3. Worker Session
+    // ---------------------------------------------------------
+    subgraph cluster_3 {
+        label = "Process 3: Worker (Stateful)";
+        style=filled; color="#fff0e6"; margin=15;
+        node [fillcolor="white"];
+        
+        CMD [label="cmd.exe Session\n(PID: xxxxx)", shape=component];
+        Env [label="Environment Block\n(INETROOT, PATH...)", shape=note];
+        
+        CMD -> Env [style=dashed, dir=none, color="#888888"];
+    }
+
+    // =========================================================
+    //  (Connections)
+    // =========================================================
+
+    // 1. Claude <-> MCP (Stdio)
+    Claude -> MCP_Server [label="Stdio (JSON-RPC)", dir=both, penwidth=2.0];
+
+    // 2. MCP <-> Host (Named Pipe)
+    MCP_Server -> Pipe_Host [label="Named Pipe (IPC)\nProtocol: __START__ ... __END__", dir=both, penwidth=2.0];
+    MCP_Server -> Pipe_Host [label="Start if dead", style=dashed, color="#666666", constraint=false];
+
+    // 3. Host <-> Worker (Simplified IO)
+    Pipe_Host -> CMD [label="IO Redirection\n(Stdin / Stdout)", dir=both, penwidth=2.0];
+}

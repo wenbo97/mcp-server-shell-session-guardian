@@ -1,0 +1,28 @@
+digraph DataFlow {
+    rankdir=LR;
+    node [shape=box, style="filled,rounded", fontname="Arial", fontsize=12, height=0.6];
+    edge [fontname="Arial", fontsize=10];
+
+    
+    Claude [label="AI Agent", fillcolor="#ffe6f2"];
+    
+    Client [label="MCP Tool\n(Pipe Client)", fillcolor="#e6f2ff"];
+    
+    Server [label="Host Service\n(Pipe Server)", fillcolor="#e6ffe6"];
+    
+    CMD [label="Session", fillcolor="#fff0e6"];
+
+    
+    edge [color="blue", style="solid"];
+
+    Claude -> Client [label="1. Request\n(init/build)"];
+    Client -> Server [label="2. Write to Pipe\nStart host server\n(Wrapped Command Chain)"]; 
+    Server -> CMD    [label="3. Write to Stdin\n(command execution)"];
+
+    
+    edge [color="#00aa00", style="dashed", fontcolor="black"];
+
+    CMD -> Server    [label="4. Read the Stdout\n(real-time output)"];
+    Server -> Client [label="5. Read from Pipe\nSend command output to Pipe"];
+    Client -> Claude [label="6. Return result\n(JSON-RPC)"];
+}

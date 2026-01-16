@@ -52,3 +52,15 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+
+.vs/
+.vscode/
+.idea/
+bin/
+obj/
+builds/
+cmd
+Mcp.Server.SessionGuardian.Plugin.user
+
+start_claude.cmd
