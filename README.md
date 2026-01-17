@@ -1,3 +1,6 @@
+### Note
+- Still developing on local, will well-format in next commit.
+
 # mcp-server-shell-session-guardian
 
 *An MCP tool that keeps a shell session alive in memory, allowing AI agents to run **locally** commands in a persistent terminal environment.*
